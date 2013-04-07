@@ -261,6 +261,7 @@ class User < ActiveRecord::Base
   def authorized_projects
     project_ids = users_projects.pluck(:project_id)
     project_ids = project_ids | owned_projects.pluck(:id)
+    project_ids = project_ids | public_projects.pluck(:id)
     Project.where(id: project_ids)
   end
 
@@ -276,6 +277,10 @@ class User < ActiveRecord::Base
                   namespaces: namespaces.map(&:id), user_id: self.id)
   end
 
+  def public_projects
+    Project.where("projects.public = true")
+  end
+
   # Team membership in authorized projects
   def tm_in_authorized_projects
     UsersProject.where(project_id:  authorized_projects.map(&:id), user_id: self.id)
@@ -285,12 +290,16 @@ class User < ActiveRecord::Base
     admin
   end
 
+  def is_guest?
+    username == 'guest'
+  end
+
   def require_ssh_key?
-    keys.count == 0
+    !is_guest? && keys.count == 0
   end
 
   def can_change_username?
-    Gitlab.config.gitlab.username_changing_enabled
+    !is_guest? && Gitlab.config.gitlab.username_changing_enabled
   end
 
   def can_create_project?

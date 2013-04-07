@@ -197,6 +197,10 @@ class Project < ActiveRecord::Base
     self.id
   end
 
+  def is_public?
+    self.public
+  end
+
   def issues_labels
     issues.tag_counts_on(:labels)
   end
