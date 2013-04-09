@@ -1,0 +1,57 @@
+/*
+ *  Application Footer
+ *
+ */
+
+html,
+body {
+    height: 100%;
+}
+
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -154px;
+}
+
+#push,
+#footer {
+    height: 150px;
+}
+
+#footer {
+    color: #BBBCBD;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #474D57;
+    // border-top: 6px solid #8691A3;
+    border-top: 4px solid #D95838;
+    // border-top: 4px solid #AD7C53;
+}
+
+#footer > .container > .row {
+    margin-top: 2px;
+}
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#footer a {
+    color: #A8A8A8;
+}
+
+#footer a:hover {
+    color: #A39D86;
+}
+
+@media (max-width: 767px) {
+    #footer {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+

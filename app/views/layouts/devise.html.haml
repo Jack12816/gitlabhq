@@ -2,7 +2,13 @@
 %html{ lang: "en"}
   = render "layouts/head"
   %body.ui_basic.login-page
-    = render "layouts/flash"
-    .container
-      .content
-        = yield
+    #wrap
+      = render "layouts/head_panel", title: "Login"
+      = render "layouts/flash"
+      .container
+        .content
+          = yield
+      #push
+
+    = render "layouts/foot"
+

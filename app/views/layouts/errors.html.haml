@@ -2,9 +2,15 @@
 %html{ lang: "en"}
   = render "layouts/head", title: "Error"
   %body{class: "#{app_theme} application"}
-    = render "layouts/head_panel", title: ""
-    = render "layouts/flash"
-    .container
-      .content
-        %center.padded.prepend-top-20
-          = yield
+    #wrap
+      = render "layouts/head_panel", title: ""
+      = render "layouts/flash"
+      .container
+        .content
+          %center.padded.prepend-top-20
+            = yield
+
+      #push
+
+    = render "layouts/foot"
+
